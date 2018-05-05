@@ -1,0 +1,125 @@
+##################################################
+# 勤務時間(KINMUJIKAN)
+##################################################
+DROP TABLE KINMUJIKAN;
+CREATE TABLE IF NOT EXISTS KINMUJIKAN(
+    SyainNo VARCHAR(10) NOT NULL PRIMARY KEY,
+    Ym VARCHAR(6) NOT NULL PRIMARY KEY,
+    Day VARCHAR(2) NOT NULL PRIMARY KEY,
+    WorkKbn VARCHAR(2),
+    StartTime DATETIME,
+    EndTime DATETIME,
+    BreakTime TIME,
+    BreakTime22 TIME,
+    OperatingTime TIME,
+    LateNightOvertime TIME,
+    Reason VARCHAR(300),
+    WorkContents VARCHAR(300),
+    AppNo VARCHAR(10)
+);
+
+##################################################
+# 勤務時間設定(KINMUJIKANSETTEI)
+##################################################
+DROP TABLE KINMUJIKANSETTEI;
+CREATE TABLE IF NOT EXISTS KINMUJIKANSETTEI(
+    SyainNo VARCHAR(10),
+    StartTime DATETIME,
+    EndTime DATETIME,
+    BreakTime TIME,
+    Remark VARCHAR(1000),
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 社員マスタ(SYAIN_MST)
+##################################################
+DROP TABLE SYAIN_MST;
+CREATE TABLE IF NOT EXISTS SYAIN_MST(
+    SyainNo VARCHAR(10) NOT NULL PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    NameKana VARCHAR(100),
+    NyusyaDate VARCHAR(8),
+    RetireDate VARCHAR(8),
+    Birthday VARCHAR(8),
+    Age VARCHAR(3),
+    Mail VARCHAR(256),
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 祝日管理(SYUKUJITUKANRI)
+##################################################
+DROP TABLE SYUKUJITUKANRI;
+CREATE TABLE IF NOT EXISTS SYUKUJITUKANRI(
+    Ym VARCHAR(6) PRIMARY KEY,
+    Day VARCHAR(2) PRIMARY KEY,
+    HolidayName VARCHAR(100) PRIMARY KEY,
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 申請(SHINSEI)
+##################################################
+DROP TABLE SHINSEI;
+CREATE TABLE IF NOT EXISTS SHINSEI(
+    AppNo VARCHAR(10),
+    SyainNo VARCHAR(10),
+    AppId VARCHAR(3),
+    AppDate DATETIME,
+    ApprovalDate DATETIME,
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 申請マスタ(SHINSEIMST)
+##################################################
+DROP TABLE SHINSEIMST;
+CREATE TABLE IF NOT EXISTS SHINSEIMST(
+    AppId VARCHAR(3) PRIMARY KEY,
+    AppName VARCHAR(100),
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 締め管理(SHIMEKANRI)
+##################################################
+DROP TABLE SHIMEKANRI;
+CREATE TABLE IF NOT EXISTS SHIMEKANRI(
+    Ym VARCHAR(6),
+    DeadlineStatus VARCHAR(1),
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
+##################################################
+# 有給管理(0)
+##################################################
+DROP TABLE 0;
+CREATE TABLE IF NOT EXISTS 0(
+    SyainNo VARCHAR(10) PRIMARY KEY,
+    Ym VARCHAR(6) PRIMARY KEY,
+    Paid VARCHAR(3),
+    EntryDate DATETIME,
+    EntryUser VARCHAR(10),
+    UpdateDate DATETIME,
+    UpdateUser VARCHAR(10)
+);
+
